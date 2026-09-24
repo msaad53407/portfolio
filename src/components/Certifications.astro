@@ -1,0 +1,14 @@
+---
+import certs from "../data/certifications.json";
+import SectionHeading from "./SectionHeading.astro";
+---
+<section id="certs" aria-label="Certifications" class="section-shell py-14">
+  <SectionHeading index="06" prefix={certs.prefix} title={certs.heading} />
+  <div class="flex flex-wrap gap-2">
+    {certs.items.map((c) => (
+      <span class="reveal panel inline-flex items-center gap-2 px-3 py-2 font-mono text-micro text-slate-300">
+        <span class="text-glow">◆</span> {c}
+      </span>
+    ))}
+  </div>
+</section>

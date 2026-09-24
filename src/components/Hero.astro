@@ -1,0 +1,39 @@
+---
+import hero from "../data/hero.json";
+import AgentGraph from "./react/AgentGraph.tsx";
+---
+<section id="top" class="mx-auto grid max-w-6xl gap-10 px-4 pb-16 pt-28 sm:px-6 md:grid-cols-2 md:items-center md:pt-36">
+  <div>
+    <p class="reveal panel inline-flex items-center gap-2 px-3 py-1.5 font-mono text-micro text-glow">
+      <span class="size-1.5 rounded-full bg-glow animate-status"></span>
+      {hero.eyebrow}
+    </p>
+    <h1 class="reveal mt-5 font-mono text-3xl font-bold leading-tight text-slate-100 sm:text-4xl">
+      {hero.headline}
+    </h1>
+    <p class="reveal mt-5 max-w-xl text-body leading-relaxed text-fog">
+      {hero.subhead}
+    </p>
+    <div class="reveal mt-7 flex flex-wrap gap-3">
+      <a
+        href={hero.primaryCta.href}
+        class="btn-accent px-5 py-2.5"
+      >
+        {hero.primaryCta.label} →
+      </a>
+      <a
+        href={hero.secondaryCta.href}
+        class="btn-outline px-5 py-2.5"
+      >
+        $ {hero.secondaryCta.label}
+      </a>
+    </div>
+    <div class="reveal mt-7 flex flex-wrap gap-x-6 gap-y-1 font-mono text-micro text-dim">
+      {hero.meta.map((m) => <span>{m}</span>)}
+    </div>
+  </div>
+  <div class="reveal">
+    <AgentGraph client:visible title={hero.graph.title} nodes={hero.graph.nodes} edges={hero.graph.edges} steps={hero.graph.steps} />
+    <p class="mt-2 text-right font-mono text-tiny text-dim">// agent execution trace — mock data</p>
+  </div>
+</section>

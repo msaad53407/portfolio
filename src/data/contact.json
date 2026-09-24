@@ -1,0 +1,12 @@
+{
+  "heading": "Let's build something that runs in production.",
+  "body": "Open to freelance projects and full-time opportunities.",
+  "email": "contact@msaaddev.com",
+  "links": [
+    { "label": "Email", "href": "mailto:contact@msaaddev.com", "icon": "Mail" },
+    { "label": "LinkedIn", "href": "https://www.linkedin.com/in/muhammad-saad-61a5792aa/", "icon": "Linkedin" },
+    { "label": "GitHub", "href": "https://github.com/msaad53407", "icon": "Github" },
+    { "label": "Upwork", "href": "https://www.upwork.com/freelancers/~012a983d1c1f670911", "icon": "Briefcase" }
+  ],
+  "footer": "Muhammad Saad — built with Astro. $ uptime: 99.9%"
+}

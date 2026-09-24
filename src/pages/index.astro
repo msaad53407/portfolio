@@ -1,17 +1,42 @@
 ---
-
+import "../global.css";
+import SeoHead from "../components/SeoHead.astro";
+import Nav from "../components/Nav.astro";
+import Hero from "../components/Hero.astro";
+import About from "../components/About.astro";
+import Work from "../components/Work.astro";
+import Skills from "../components/Skills.astro";
+import Experience from "../components/Experience.astro";
+import Certifications from "../components/Certifications.astro";
+import Contact from "../components/Contact.astro";
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <SeoHead path="/" />
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+  </head>
+  <body class="min-h-screen">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-glow focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:text-void">Skip to content</a>
+    <Nav />
+    <main id="main">
+      <Hero />
+      <About />
+      <Work />
+      <Skills />
+      <Experience />
+      <Certifications />
+      <Contact />
+    </main>
+    <script>
+      const io = new IntersectionObserver(
+        (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
+        { threshold: 0.1 }
+      );
+      const observeAll = () => document.querySelectorAll(".reveal:not(.is-visible)").forEach((el) => io.observe(el));
+      observeAll();
+      new MutationObserver(observeAll).observe(document.body, { childList: true, subtree: true });
+    </script>
+  </body>
 </html>

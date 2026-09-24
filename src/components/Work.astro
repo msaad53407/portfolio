@@ -1,0 +1,20 @@
+---
+import SectionHeading from "./SectionHeading.astro";
+import ProjectGrid from "./react/ProjectGrid.tsx";
+import type { Project } from "./react/types";
+import projectsData from "../data/projects.json";
+
+const projects = projectsData as Project[];
+const featured = projects.filter((p) => p.featured);
+const secondary = projects.filter((p) => !p.featured);
+---
+<section id="work" aria-label="Selected work and case studies" class="section-shell py-14">
+  <SectionHeading index="02" prefix="$" title="Selected Work" desc="Featured builds — each card opens a full case study with gallery, architecture notes, and results." />
+  <ProjectGrid client:load projects={featured} layout="large" />
+
+  <div class="mb-8 mt-16 scroll-mt-20" id="more-work">
+    <p class="eyebrow">03 // more_work</p>
+    <h3 class="mt-1 font-mono text-lg font-semibold text-slate-100"><span class="prompt">$</span> More Work</h3>
+  </div>
+  <ProjectGrid client:load projects={secondary} layout="compact" />
+</section>

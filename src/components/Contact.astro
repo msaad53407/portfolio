@@ -1,0 +1,44 @@
+---
+import contact from "../data/contact.json";
+---
+<section id="contact" aria-label="Contact" class="section-shell py-14">
+  <div class="reveal panel p-8 text-center sm:p-12">
+    <p class="font-mono text-micro text-dim">$ ./contact --open</p>
+    <h2 class="mx-auto mt-3 max-w-2xl font-mono text-2xl font-bold leading-tight text-slate-100 sm:text-3xl">
+      {contact.heading}
+    </h2>
+    <p class="mx-auto mt-3 max-w-md text-body text-fog">{contact.body}</p>
+    <div class="mt-7 flex flex-wrap justify-center gap-3">
+      {contact.links.map((l) => {
+        const isExternal = l.href.startsWith("http");
+        const isProfile = isExternal && l.label !== "Email";
+        return (
+          <a
+            href={l.href}
+            class="btn-outline px-4 py-2"
+            target={isExternal ? "_blank" : undefined}
+            rel={isProfile ? "me noopener noreferrer" : isExternal ? "noopener noreferrer" : undefined}
+          >
+            {l.label} <span aria-hidden="true">↗</span>
+          </a>
+        );
+      })}
+    </div>
+    <p class="mt-5 font-mono text-micro text-dim">{contact.email}</p>
+  </div>
+  <footer class="flex flex-col items-center justify-between gap-2 py-10 font-mono text-micro text-dim sm:flex-row">
+    <span>© {new Date().getFullYear()} {contact.footer}</span>
+    <span class="inline-flex items-center gap-2">
+      <span class="hidden sm:inline-flex items-center gap-1.5">press <kbd class="rounded-terminal border border-edge bg-raise px-1 text-tiny text-fog">⌘K</kbd> to search</span>
+      <span><span class="text-glow">●</span> open_to_work: freelance + full-time</span>
+    </span>
+  </footer>
+</section>
+
+<script>
+  const observer = new IntersectionObserver(
+    (entries) => entries.forEach((e) => e.isIntersecting && e.target.classList.add("is-visible")),
+    { threshold: 0.12 }
+  );
+  document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+</script>

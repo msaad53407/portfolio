@@ -1,0 +1,17 @@
+---
+interface Props {
+  index: string;
+  prefix?: string;
+  title: string;
+  desc?: string;
+}
+const { index, prefix = "$", title, desc } = Astro.props;
+---
+<div class="reveal mb-8">
+  <p class="eyebrow">{index}</p>
+  <h2 class="mt-1 font-mono text-xl font-semibold text-slate-100 sm:text-2xl">
+    <span class="prompt">{prefix}</span> {title}
+    <span class="animate-blink cursor ml-1 bg-glow/70"></span>
+  </h2>
+  {desc && <p class="mt-2 max-w-2xl text-sm leading-relaxed text-fog">{desc}</p>}
+</div>

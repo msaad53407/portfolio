@@ -1,0 +1,6 @@
+{
+  "heading": "About",
+  "prefix": "$",
+  "body": "I'm Saad, a full-stack AI engineer based in Pakistan. I design the backend infrastructure agents need to run reliably (auth, permissions, data layers) and the agent logic itself: tool-calling loops, multi-provider routing, context management, and the guardrails that keep autonomous systems from going off the rails. Currently a CS undergraduate at the University of Sargodha, graduating June 2027.",
+  "pills": ["TypeScript", "Next.js", "LangGraph", "LiteLLM", "Supabase", "Docker"]
+}

@@ -1,0 +1,25 @@
+{
+  "name": "Muhammad Saad",
+  "handle": "msaad53407",
+  "role": "Full Stack AI Engineer",
+  "status": "available",
+  "logo": ">_saad",
+  "url": "https://msaaddev.com",
+  "locale": "en_US",
+  "language": "en",
+  "description": "Muhammad Saad — Full Stack AI Engineer in Pakistan building production AI agents, LLM systems & full-stack platforms with Next.js, LangGraph & LiteLLM.",
+  "author": "Muhammad Saad",
+  "twitter": "@msaad53407",
+  "twitterSite": "@msaad53407",
+  "googleSiteVerification": "",
+  "plausibleDomain": "",
+  "themeColor": "#0a0a0f",
+  "ogImage": "/og-image.jpg",
+  "nav": [
+    { "label": "about", "href": "/#about", "prefix": ">" },
+    { "label": "work", "href": "/#work", "prefix": ">" },
+    { "label": "stack", "href": "/#stack", "prefix": ">" },
+    { "label": "experience", "href": "/#experience", "prefix": ">" },
+    { "label": "contact", "href": "/#contact", "prefix": "$" }
+  ]
+}

@@ -1,0 +1,174 @@
+---
+/**
+ * SeoHead.astro — single source of truth for all SEO <head> tags.
+ * Covers: title, description, canonical, robots, theme-color,
+ * Open Graph, Twitter Cards, favicons, manifest, sitemap hint + JSON-LD.
+ */
+import site from "../data/site.json";
+import contact from "../data/contact.json";
+import projectsData from "../data/projects.json";
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+  image?: string;
+  noindex?: boolean;
+  type?: "website" | "article" | "profile";
+}
+
+const {
+  title = `${site.name} — ${site.role}`,
+  description = site.description,
+  path = "/",
+  image = site.ogImage,
+  noindex = false,
+  type = "website",
+} = Astro.props as Props;
+
+// Astro.site is set in astro.config.mjs (https://msaaddev.com).
+// Fall back to site.json so `astro dev` / preview still emit absolute URLs.
+const siteUrl = (Astro.site?.toString() ?? site.url).replace(/\/$/, "");
+const canonical = new URL(path.replace(/^\//, ""), siteUrl + "/").toString();
+// Normalise "/" so canonical is exactly https://msaaddev.com/ on homepage
+const canonicalUrl = path === "/" ? siteUrl + "/" : canonical;
+const ogImageUrl = new URL(image.replace(/^\//, ""), siteUrl + "/").toString();
+
+const fullTitle = title;
+
+const personSchema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "@id": `${siteUrl}/#person`,
+  name: site.name,
+  alternateName: site.handle,
+  jobTitle: site.role,
+  url: siteUrl + "/",
+  image: ogImageUrl,
+  description,
+  email: `mailto:${contact.email}`,
+  sameAs: contact.links
+    .map((l) => l.href)
+    .filter((href) => href.startsWith("http")),
+  worksFor: {
+    "@type": "Organization",
+    name: "CodexaLabs",
+    url: siteUrl + "/#experience",
+  },
+  affiliation: {
+    "@type": "CollegeOrUniversity",
+    name: "University of Sargodha",
+    description: "CS undergraduate student, graduating June 2027",
+  },
+  knowsAbout: [
+    "AI Agents",
+    "LLM Systems",
+    "Tool Calling",
+    "LangGraph",
+    "LiteLLM",
+    "Next.js",
+    "Node.js",
+    "TypeScript",
+    "RAG",
+    "Model Context Protocol",
+  ],
+  address: { "@type": "PostalAddress", addressCountry: "PK" },
+};
+
+const websiteSchema = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${siteUrl}/#website`,
+  url: siteUrl + "/",
+  name: `${site.name} — ${site.role}`,
+  description,
+  inLanguage: site.language,
+  author: { "@id": `${siteUrl}/#person` },
+};
+
+const profilePageSchema = {
+  "@context": "https://schema.org",
+  "@type": "ProfilePage",
+  dateCreated: "2026-01-01",
+  dateModified: new Date().toISOString().slice(0, 10),
+  mainEntity: { "@id": `${siteUrl}/#person` },
+};
+
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Selected Work",
+  itemListElement: (projectsData as Array<{ id: string; title: string; oneLiner: string; tag: string }>).map(
+    (p, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      url: `${siteUrl}/work/${p.id}/`,
+      item: {
+        "@type": "CreativeWork",
+        "@id": `${siteUrl}/work/${p.id}/#work`,
+        name: p.title,
+        description: p.oneLiner,
+        genre: p.tag,
+        author: { "@id": `${siteUrl}/#person` },
+        url: `${siteUrl}/work/${p.id}/`,
+      },
+    })
+  ),
+};
+---
+<title>{fullTitle}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalUrl} />
+<meta
+  name="robots"
+  content={noindex
+    ? "noindex, nofollow"
+    : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"}
+/>
+<meta name="author" content={site.author} />
+{(site as Record<string, string>).googleSiteVerification && (
+  <meta name="google-site-verification" content={(site as Record<string, string>).googleSiteVerification} />
+)}
+{(site as Record<string, string>).plausibleDomain && (
+  <script defer data-domain={(site as Record<string, string>).plausibleDomain} src="https://plausible.io/js/script.js"></script>
+)}
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content={site.themeColor} />
+<meta name="color-scheme" content="dark" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+
+{/* Favicons — generated set, see /public/site.webmanifest */}
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+<link rel="shortcut icon" href="/favicon.ico" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+<link rel="sitemap" href="/sitemap-index.xml" />
+
+{/* Open Graph */}
+<meta property="og:type" content={type === "article" ? "article" : type === "profile" ? "profile" : "website"} />
+<meta property="og:site_name" content={`${site.name} — ${site.role}`} />
+<meta property="og:title" content={fullTitle} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonicalUrl} />
+<meta property="og:image" content={ogImageUrl} />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content={`${site.name}, ${site.role} — portfolio`} />
+<meta property="og:locale" content={site.locale} />
+
+{/* Twitter / X */}
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={fullTitle} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImageUrl} />
+<meta name="twitter:image:alt" content={`${site.name}, ${site.role} — portfolio`} />
+{site.twitter && <meta name="twitter:creator" content={site.twitter} />}
+{(site as Record<string, string>).twitterSite && <meta name="twitter:site" content={(site as Record<string, string>).twitterSite} />}
+
+{/* Structured data */}
+<script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(websiteSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(profilePageSchema)} />
+<script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />

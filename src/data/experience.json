@@ -1,0 +1,33 @@
+{
+  "heading": "Experience",
+  "prefix": "$",
+  "items": [
+    {
+      "company": "CodexaLabs",
+      "role": "Associate Software Engineer",
+      "start": "Aug 2026",
+      "startISO": "2026-08",
+      "end": "Present",
+      "endISO": "",
+      "note": ""
+    },
+    {
+      "company": "FlyRank AI",
+      "role": "Backend AI Engineering Intern",
+      "start": "Jul 2026",
+      "startISO": "2026-07",
+      "end": "Sep 2026",
+      "endISO": "2026-09",
+      "note": "Capstone: built an LLM usage metering and billing engine with exactly-once idempotent metering and integer-cent pricing precision. 100% accuracy on evaluation benchmarks at roughly $0.0001 per ticket."
+    },
+    {
+      "company": "Synnestra",
+      "role": "Full Stack Developer -> Frontend Developer",
+      "start": "Apr 2024",
+      "startISO": "2024-04",
+      "end": "Dec 2025",
+      "endISO": "2025-12",
+      "note": ""
+    }
+  ]
+}

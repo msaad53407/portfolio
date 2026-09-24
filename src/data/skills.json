@@ -1,0 +1,18 @@
+{
+  "heading": "Skills & Stack",
+  "prefix": "$",
+  "groups": [
+    {
+      "title": "Languages & Frameworks",
+      "items": ["TypeScript", "Next.js", "Node.js", "Express.js", "React", "Flutter", "Python/FastAPI"]
+    },
+    {
+      "title": "AI & Agentic Systems",
+      "items": ["LangChain", "LangGraph", "LiteLLM", "MCP", "tool-calling architectures", "multi-provider routing", "RAG"]
+    },
+    {
+      "title": "Data & Infra",
+      "items": ["Supabase", "PostgreSQL", "MySQL", "MongoDB", "Redis", "Docker", "CI/CD"]
+    }
+  ]
+}

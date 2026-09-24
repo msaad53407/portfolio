@@ -1,0 +1,38 @@
+{
+  "eyebrow": "> full_stack_ai_engineer.status: available",
+  "headline": "I build AI agents and full-stack systems that run in production, not just in demos.",
+  "subhead": "Associate Software Engineer at CodexaLabs. Independent builder shipping agentic systems and full-stack platforms. Next.js, Node.js, LangGraph, LiteLLM.",
+  "primaryCta": { "label": "See my work", "href": "/#work" },
+  "secondaryCta": { "label": "Get in touch", "href": "/#contact" },
+  "graph": {
+    "title": "agent — execution trace",
+    "nodes": [
+      { "id": "request", "label": "request", "sub": "POST /chat", "layer": 0 },
+      { "id": "router", "label": "router", "sub": "via litellm", "layer": 1 },
+      { "id": "avail", "label": "check_avail()", "sub": "200 · 212ms", "layer": 2 },
+      { "id": "kb", "label": "query_kb()", "sub": "6 docs · RAG", "layer": 2 },
+      { "id": "guard", "label": "guardrail", "sub": "pass", "layer": 3 },
+      { "id": "respond", "label": "respond", "sub": "1.4k tok", "layer": 4 }
+    ],
+    "edges": [
+      ["request", "router"],
+      ["router", "avail"],
+      ["router", "kb"],
+      ["avail", "guard"],
+      ["kb", "guard"],
+      ["guard", "respond"]
+    ],
+    "steps": [
+      "ingress: client.request → routed",
+      "agent.router() → tools=[avail, kb]",
+      "tool_call: check_avail() → 200 OK · 212ms",
+      "tool_call: query_kb() → 6 docs · 388ms",
+      "guardrail.check() → pass [pii, scope]",
+      "respond.stream() → done · 1.4k tokens"
+    ]
+  },
+  "meta": [
+    "$ location: pakistan — remote_ok",
+    "$ degree: cs_undergrad — jun_2027"
+  ]
+}

@@ -1,0 +1,40 @@
+---
+import site from "../data/site.json";
+import CommandMenu from "./react/CommandMenu.tsx";
+---
+<header class="fixed inset-x-0 top-0 z-40 border-b border-edge bg-void/85 backdrop-blur-md">
+  <nav aria-label="Primary" class="mx-auto flex h-14 max-w-6xl items-center justify-between px-4 sm:px-6">
+    <a href="/#top" aria-label="Muhammad Saad — back to top" class="font-mono text-sm font-bold text-slate-100">
+      <span class="text-glow">{site.logo}</span>
+      <span class="animate-blink cursor-sm cursor ml-0.5" aria-hidden="true"></span>
+    </a>
+    <div class="flex items-center gap-3 md:gap-6">
+      <div class="hidden items-center gap-6 md:flex">
+        {site.nav.slice(0, -1).map((n) => (
+          <a href={n.href} class="font-mono text-code text-fog transition-colors hover:text-glow">
+            <span class="text-dim">{n.prefix}</span> {n.label}
+          </a>
+        ))}
+        <a
+          href="/#contact"
+          class="rounded-terminal border border-glow/60 px-3 py-1.5 font-mono text-code text-glow transition-colors hover:bg-glow hover:text-void"
+        >
+          $ Contact
+        </a>
+      </div>
+      <CommandMenu client:load />
+      <details class="relative md:hidden">
+      <summary aria-label="Open menu" class="cursor-pointer list-none rounded-terminal border border-edge px-3 py-1.5 font-mono text-code text-slate-200 [&::-webkit-details-marker]:hidden">
+        menu
+      </summary>
+      <div class="absolute right-0 top-10 flex w-48 flex-col border border-edge bg-panel p-2 shadow-xl">
+        {site.nav.map((n) => (
+          <a href={n.href} class="rounded px-3 py-2 font-mono text-code text-fog hover:bg-raise hover:text-glow">
+            {n.prefix} {n.label}
+          </a>
+        ))}
+      </div>
+    </details>
+    </div>
+  </nav>
+</header>

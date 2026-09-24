@@ -1,0 +1,22 @@
+---
+import skills from "../data/skills.json";
+import SectionHeading from "./SectionHeading.astro";
+---
+<section id="stack" aria-label="Skills and tech stack" class="section-shell py-14">
+  <SectionHeading index="04" prefix={skills.prefix} title={skills.heading} />
+  <div class="grid gap-4 md:grid-cols-3">
+    {skills.groups.map((g, i) => (
+      <div class="reveal panel p-5">
+        <p class="eyebrow">0{i + 1} //</p>
+        <h3 class="mt-1 font-mono text-body-sm font-semibold text-slate-100">{g.title}</h3>
+        <ul class="mt-4 space-y-2">
+          {g.items.map((item) => (
+            <li class="flex items-center gap-2 text-body-sm text-fog">
+              <span class="prompt text-micro">›</span> {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</section>

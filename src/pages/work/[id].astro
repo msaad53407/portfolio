@@ -1,0 +1,170 @@
+---
+import "../../global.css";
+import SeoHead from "../../components/SeoHead.astro";
+import Nav from "../../components/Nav.astro";
+import type { Project } from "../../components/react/types";
+import projectsData from "../../data/projects.json";
+import site from "../../data/site.json";
+
+export function getStaticPaths() {
+  return (projectsData as Project[]).map((p) => ({ params: { id: p.id } }));
+}
+
+const { id } = Astro.params;
+const projects = projectsData as Project[];
+const project = projects.find((p) => p.id === id);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+
+const siteUrl = (Astro.site?.toString() ?? site.url).replace(/\/$/, "");
+const pagePath = `/work/${project.id}/`;
+const pageUrl = `${siteUrl}${pagePath}`;
+const coverUrl = new URL(project.cover.replace(/^\//, ""), siteUrl + "/").toString();
+const others = projects.filter((p) => p.id !== project.id).slice(0, 3);
+
+const creativeWorkSchema = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  "@id": `${pageUrl}#work`,
+  name: project.title,
+  headline: project.oneLiner,
+  description: `${project.oneLiner} ${project.body}`,
+  genre: project.tag,
+  image: [coverUrl, ...project.gallery.map((g) => new URL(g.replace(/^\//, ""), siteUrl + "/").toString())],
+  author: { "@id": `${siteUrl}/#person` },
+  url: pageUrl,
+  keywords: project.stack.join(", "),
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: siteUrl + "/" },
+    { "@type": "ListItem", position: 2, name: "Work", item: siteUrl + "/#work" },
+    { "@type": "ListItem", position: 3, name: project.title, item: pageUrl },
+  ],
+};
+---
+
+<html lang="en" class="dark">
+  <head>
+    <meta charset="utf-8" />
+    <SeoHead
+      path={pagePath}
+      title={`${project.title} — ${project.tag} | ${site.name}`}
+      description={`${project.title}: ${project.oneLiner}`}
+      image={project.cover}
+      type="article"
+    />
+    <script type="application/ld+json" set:html={JSON.stringify(creativeWorkSchema)} />
+    <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+    <noscript><style>.reveal { opacity: 1; transform: none; }</style></noscript>
+  </head>
+  <body class="min-h-screen">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded focus:bg-glow focus:px-3 focus:py-2 focus:font-mono focus:text-xs focus:text-void">Skip to content</a>
+    <Nav />
+    <main id="main" class="mx-auto max-w-4xl px-4 pb-20 pt-24 sm:px-6">
+      <nav aria-label="Breadcrumb" class="font-mono text-micro text-dim">
+        <a href="/" class="hover:text-glow">home</a>
+        <span aria-hidden="true"> / </span>
+        <a href="/#work" class="hover:text-glow">work</a>
+        <span aria-hidden="true"> / </span>
+        <span aria-current="page" class="text-fog">{project.id}</span>
+      </nav>
+
+      <p class="eyebrow mt-6">[<span class="text-glow">{project.tag}</span>]</p>
+      <h1 class="mt-2 font-mono text-3xl font-bold leading-tight text-slate-100 sm:text-4xl">{project.title}</h1>
+      <p class="mt-3 text-lg font-medium leading-snug text-slate-300">{project.oneLiner}</p>
+      <p class="mt-3 leading-relaxed text-fog">{project.body}</p>
+      <p class="mt-3 font-mono text-code text-fog"><span class="text-dim">role:</span> {project.role}</p>
+
+      <img
+        src={project.cover}
+        alt={`${project.title} — ${project.tag}: ${project.oneLiner}`}
+        width={800}
+        height={350}
+        decoding="async"
+        fetchpriority="high"
+        class="cover-ratio mt-6 w-full border border-edge bg-void object-cover"
+      />
+
+      <div class="mt-4 flex flex-wrap gap-1.5" aria-label="Tech stack">
+        {project.stack.map((s) => (
+          <span class="tag-pill">{s}</span>
+        ))}
+      </div>
+
+      <div class="mt-4 flex flex-wrap gap-2 font-mono text-micro text-fog" aria-label="Key metrics">
+        {project.metrics.map((m) => (
+          <span class="border border-edge px-2 py-1">
+            <span class="text-dim">{m.label}:</span> <span class="text-slate-200">{m.value}</span>
+          </span>
+        ))}
+      </div>
+
+      <div class="mt-8 grid gap-6 rounded-terminal border border-edge bg-panel p-6 text-body leading-relaxed text-slate-300">
+        <section aria-label="Situation">
+          <h2 class="mb-1 font-mono text-micro uppercase tracking-widest text-glow">// situation</h2>
+          <p>{project.caseStudy.situation}</p>
+        </section>
+        <section aria-label="Task">
+          <h2 class="mb-1 font-mono text-micro uppercase tracking-widest text-glow">// task</h2>
+          <p>{project.caseStudy.task}</p>
+        </section>
+        <section aria-label="Action">
+          <h2 class="mb-1 font-mono text-micro uppercase tracking-widest text-glow">// action</h2>
+          <ul class="list-none space-y-1.5">
+            {project.caseStudy.action.map((a) => (
+              <li class="flex gap-2"><span class="font-mono text-glow" aria-hidden="true">›</span><span>{a}</span></li>
+            ))}
+          </ul>
+        </section>
+        <section aria-label="Results">
+          <h2 class="mb-1 font-mono text-micro uppercase tracking-widest text-glow">// results</h2>
+          <ul class="list-none space-y-1.5">
+            {project.caseStudy.results.map((r) => (
+              <li class="flex gap-2"><span class="font-mono text-glow" aria-hidden="true">✓</span><span>{r}</span></li>
+            ))}
+          </ul>
+        </section>
+      </div>
+
+      {project.gallery.length > 1 && (
+        <section aria-label="Gallery" class="mt-8">
+          <h2 class="font-mono text-lg font-semibold text-slate-100"><span class="prompt">$</span> Gallery</h2>
+          <div class="mt-4 grid gap-4">
+            {project.gallery.map((g, i) => (
+              <img
+                src={g}
+                alt={`${project.title} screenshot ${i + 1} of ${project.gallery.length}`}
+                width={800}
+                height={350}
+                loading="lazy"
+                decoding="async"
+                class="cover-ratio w-full border border-edge bg-void object-cover"
+              />
+            ))}
+          </div>
+        </section>
+      )}
+
+      <nav aria-label="More projects" class="mt-12">
+        <h2 class="font-mono text-lg font-semibold text-slate-100"><span class="prompt">$</span> More work</h2>
+        <ul class="mt-4 space-y-2">
+          {others.map((o) => (
+            <li>
+              <a href={`/work/${o.id}/`} class="group flex items-baseline justify-between gap-4 border border-edge bg-panel px-4 py-3 transition-colors hover:border-glow/40">
+                <span class="font-mono text-body-sm font-semibold text-slate-100 group-hover:text-glow">{o.title}</span>
+                <span class="font-mono text-micro text-dim">{o.tag} →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+        <p class="mt-6"><a href="/#work" class="btn-outline px-4 py-2">← All work</a></p>
+      </nav>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+# Muhammad Saad — Full Stack AI Engineer
+
+> I build AI agents and full-stack systems that run in production, not just in demos.
+
+- Role: Associate Software Engineer at CodexaLabs; independent builder (Cincobyte/Synnestra)
+- Location: Pakistan (remote OK); CS undergraduate, University of Sargodha, graduating June 2027
+- Stack: TypeScript, Next.js, Node.js, LangGraph, LangChain, LiteLLM, MCP, Supabase, PostgreSQL, Redis, Docker
+- Contact: [you@example.com](mailto:you@example.com) (placeholder — replace with real inbox)
+
+## Sections
+
+- [About](/#about) — bio and core tags
+- [Selected Work](/#work) — ZestUp, AgentsDesk, Swappin Numbers Academy (each opens a full case study)
+- [More Work](/#more-work) — My Car Rental, NexManage, Pak Qurtaba
+- [Skills & Stack](/#stack) — languages, AI/agentic systems, data & infra
+- [Experience](/#experience) — CodexaLabs (Associate SWE, Aug 2026–Present), FlyRank AI (Backend AI Intern, Jul–Sep 2026), Synnestra (2024–2025)
+- [Certifications](/#certs) — Anthropic Academy: AI Fluency, Claude 101, AI Capabilities and Limitations, MCP Advanced Topics
+- [Contact](/#contact) — freelance + full-time inquiries
+
+## Selected Work
+
+- ZestUp: food delivery + restaurant management platform; lead backend developer — one Express/TypeScript/Prisma backend serving web, admin, and Flutter apps; real-time rider tracking via Socket.IO/Redis.
+- AgentsDesk: multi-tenant B2B AI support SaaS (Next.js, Convex, VAPI) with RAG chat + voice agents and tenant isolation.
+- Swappin Numbers Academy: subscription FinTech learning platform (React, Firebase, GPT-4) with AI Buddy, credit-repair dispute automation, community, and referrals.
+
+## Profiles
+
+- [GitHub](#) — replace with real profile URL
+- [LinkedIn](#) — replace with real profile URL
+- [Upwork](#) — replace with real profile URL

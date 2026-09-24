@@ -1,0 +1,236 @@
+[
+  {
+    "id": "zestup",
+    "featured": true,
+    "tag": "Full-Stack Marketplace",
+    "title": "ZestUp",
+    "oneLiner": "A restaurant ordering and delivery platform so Pakistani restaurants can stop paying 30%+ commissions to aggregators like Foodpanda.",
+    "body": "Lead Backend Developer and architect of the backend that serves all five clients. Designed the API, data model, auth/RBAC, real-time tracking, and multi-branch isolation so web, admin, and Flutter apps run on one reliable core.",
+    "role": "Lead Backend Developer",
+    "stack": ["Node.js", "TypeScript", "Express", "Prisma", "PostgreSQL", "Redis", "Socket.IO", "React", "Flutter", "Docker"],
+    "links": { "github": "#", "live": "#" },
+    "cover": "/images/projects/zestup/1.jpg",
+    "gallery": [
+      "/images/projects/zestup/1.jpg",
+      "/images/projects/zestup/2.jpg",
+      "/images/projects/zestup/3.jpg"
+    ],
+    "metrics": [
+      { "label": "apps served", "value": "5" },
+      { "label": "api modules", "value": "22" },
+      { "label": "socket namespaces", "value": "3" }
+    ],
+    "caseStudy": {
+      "situation": "Restaurants needed delivery, pickup, dine-in, POS, and multi-branch management without aggregator fees — across web, admin, and rider/customer mobile apps.",
+      "task": "As lead backend developer, architect a single backend serving 5 independent clients with consistent auth, real-time tracking, and branch-scoped data.",
+      "action": [
+        "Built layered Express/TypeScript API: 22 feature modules (Controllers → Services → Repositories → DTOs) with tsyringe DI and Zod validation",
+        "Dual ORM data layer: Prisma for standard ops, Kysely for complex type-safe queries; soft-deletes + audit fields via Prisma extension",
+        "Real-time layer: 3 Socket.IO namespaces (admin/customer/rider) with Redis adapter; GPS streaming, route-deviation checks via Google Maps Routes API + Turf.js",
+        "Auth/RBAC: JWT auth for 3 user types, granular role-permission middleware, rate-limit + validation + exception chain",
+        "Domain model: Branch multi-tenancy with junction tables (BranchItem, BranchRider, BranchCoupon), OrderStatus lifecycle, coupons, POS orders, sales reconciliation"
+      ],
+      "results": [
+        "One backend serves React admin, React customer web, Flutter customer + rider apps",
+        "Live rider tracking with deviation alerts (>400m), FCM + Socket.IO notifications",
+        "Shipped POS, multi-branch management, roles/permissions, coupons, sales dashboard",
+        "Swagger + AsyncAPI docs, deployable via Docker Compose / Kinsta + Vercel"
+      ]
+    }
+  },
+  {
+    "id": "agentsdesk",
+    "featured": true,
+    "tag": "B2B AI SaaS",
+    "title": "AgentsDesk",
+    "oneLiner": "A multi-tenant AI support platform so companies can deploy isolated, tool-calling support agents per client.",
+    "body": "Architected tenant isolation from the data layer up, so each customer's agent, tools, and conversation history stay fully separate on shared infrastructure.",
+    "role": "Full Stack AI Engineer",
+    "stack": ["Next.js", "Convex", "VAPI", "RAG", "TypeScript"],
+    "links": { "github": "#", "live": "#" },
+    "cover": "/images/projects/agentsdesk/cover.webp",
+    "gallery": [
+      "/images/projects/agentsdesk/1.webp",
+      "/images/projects/agentsdesk/2.webp",
+      "/images/projects/agentsdesk/3.webp",
+      "/images/projects/agentsdesk/4.webp",
+      "/images/projects/agentsdesk/5.webp",
+      "/images/projects/agentsdesk/6.webp",
+      "/images/projects/agentsdesk/7.webp"
+    ],
+    "metrics": [
+      { "label": "deploy", "value": "script_embed" },
+      { "label": "channels", "value": "chat_+_voice" },
+      { "label": "isolation", "value": "per_tenant" }
+    ],
+    "caseStudy": {
+      "situation": "Businesses want AI chat + voice support on any website without rebuilding infra per client.",
+      "task": "Build a B2B SaaS where orgs build a knowledge base, customize a widget, configure a VAPI voice agent — all from one dashboard — and embed via script tag.",
+      "action": [
+        "Built Next.js dashboard + Convex backend with per-org knowledge bases and widget config",
+        "Embedded widget handles queries through RAG-based AI with seamless human escalation",
+        "Configured VAPI voice agents per org from the same dashboard",
+        "Tenant-scoped agents, tools, and conversation history on shared infra"
+      ],
+      "results": [
+        "Deploy anywhere via simple script embed",
+        "Chat + voice from one control plane",
+        "Isolated per-client agents and history"
+      ]
+    }
+  },
+  {
+    "id": "swappin-numbers",
+    "featured": true,
+    "tag": "AI FinTech Platform",
+    "title": "Swappin Numbers Academy",
+    "oneLiner": "Subscription platform for financial literacy: books, courses, AI Buddy, credit-repair automation, and community.",
+    "body": "Lead full-stack build from scratch in ~3 months: React + Firebase + GPT-4 AI Buddy, dispute-letter automation, real-time Frat House feed, tiered subscriptions with referrals and RBAC.",
+    "role": "Lead Full Stack Developer",
+    "stack": ["React", "Firebase", "OpenAI API", "Node.js", "Stripe", "Realtime DB"],
+    "links": { "github": "#", "live": "#" },
+    "cover": "/images/projects/swappin-numbers/cover.webp",
+    "gallery": [
+      "/images/projects/swappin-numbers/1.webp",
+      "/images/projects/swappin-numbers/2.webp",
+      "/images/projects/swappin-numbers/3.webp",
+      "/images/projects/swappin-numbers/4.webp",
+      "/images/projects/swappin-numbers/5.webp"
+    ],
+    "metrics": [
+      { "label": "page_load", "value": "<2s" },
+      { "label": "ai_latency", "value": "<3s" },
+      { "label": "uptime", "value": "99.9%" }
+    ],
+    "caseStudy": {
+      "situation": "Only ~57% of U.S. adults are financially literate. Client needed education + AI guidance + automated credit repair + community in one secure ecosystem handling sensitive financial data.",
+      "task": "Architect and ship the entire platform production-ready in 3 months for thousands of concurrent users.",
+      "action": [
+        "Scalable infra on React + Firebase (Auth, Firestore, Functions, Storage)",
+        "GPT-4 AI Buddy with context-aware assistance, history tracking, cost optimization",
+        "Dispute generation: analyze reports, produce customized letters, track status/timelines, secure doc storage",
+        "Realtime social feed (posts, media, likes, comments) with moderation, lazy-load + compression",
+        "Tiered subscriptions with RBAC, referral codes + commission dashboard, renewals + payments, admin panel"
+      ],
+      "results": [
+        "5 core features shipped: AI Buddy, Credit Repair, Dispute Gen, Community, Referrals",
+        "85% reduction in manual intervention; <15% operational overhead",
+        "Realtime feed <500ms latency; WCAG 2.1 compliant; encrypted financial data"
+      ]
+    }
+  },
+  {
+    "id": "my-car-rental",
+    "featured": false,
+    "tag": "Global Booking Platform",
+    "title": "My Car Rental",
+    "oneLiner": "Multi-country car rental booking with localization, multi-currency, and self-service portal.",
+    "body": "Full-stack build with a team: Next.js frontend, NestJS modular API, Firebase Auth/Data/Storage. Location search, EN/RU translations, advance/deferred + Pay Later payments, license verification.",
+    "role": "Full Stack Developer",
+    "stack": ["Next.js", "NestJS", "Firebase", "Stripe", "i18n"],
+    "links": { "github": "#", "live": "#" },
+    "cover": "/images/projects/my-car-rental/cover.webp",
+    "gallery": [
+      "/images/projects/my-car-rental/1.webp",
+      "/images/projects/my-car-rental/2.webp",
+      "/images/projects/my-car-rental/3.webp",
+      "/images/projects/my-car-rental/4.webp",
+      "/images/projects/my-car-rental/5.webp",
+      "/images/projects/my-car-rental/6.webp"
+    ],
+    "metrics": [
+      { "label": "languages", "value": "EN_+_RU" },
+      { "label": "booking", "value": "3_steps" }
+    ],
+    "caseStudy": {
+      "situation": "Fragmented booking across countries: language barriers, inconsistent payments, manual document verification blocking expansion.",
+      "task": "Unified platform with multi-language, multi-currency, secure license verification, and self-service portal.",
+      "action": [
+        "Next.js SSR frontend for fast global loads + SEO; NestJS modular backend; Firebase BaaS",
+        "Location search by country/city/area with realtime availability and category filters",
+        "Currency conversion + localized pricing/tax; multi-currency transactions + receipts + Pay Later partial payments",
+        "Customer portal: rental lifecycle, license upload, history, modifications, downloadable agreements"
+      ],
+      "results": [
+        "Seamless localized booking; eliminated language barriers",
+        "Automated verification reduced manual work",
+        "Self-service cut support inquiries"
+      ]
+    }
+  },
+  {
+    "id": "nexmanage",
+    "featured": false,
+    "tag": "Org Management System",
+    "title": "NexManage",
+    "oneLiner": "Operations platform with RBAC, payments, chapter management, and realtime analytics.",
+    "body": "Lead systems architect for 850+ members across 12 chapters: Next.js + Node + MongoDB, 7 permission levels, Puppeteer PDF reports, WebSocket notifications, JWT + audit logging.",
+    "role": "Lead Systems Architect",
+    "stack": ["Next.js", "Node.js", "MongoDB", "WebSockets", "Puppeteer"],
+    "links": { "github": "#", "live": "#" },
+    "cover": "/images/projects/nexmanage/cover.webp",
+    "gallery": [
+      "/images/projects/nexmanage/1.webp",
+      "/images/projects/nexmanage/2.webp",
+      "/images/projects/nexmanage/3.webp",
+      "/images/projects/nexmanage/4.webp",
+      "/images/projects/nexmanage/5.webp"
+    ],
+    "metrics": [
+      { "label": "admin_time", "value": "-73%" },
+      { "label": "uptime", "value": "99.8%" },
+      { "label": "savings", "value": "$127k/yr" }
+    ],
+    "caseStudy": {
+      "situation": "850+ members in spreadsheets + disconnected payment tools; 15-20 hrs/week admin, 48h+ inquiry response.",
+      "task": "Consolidate into one secure scalable system in 3 months with 5+ user types and realtime financial tracking.",
+      "action": [
+        "Modular Next.js + Node + MongoDB; 7-level RBAC with hierarchical chapters",
+        "Invoicing + reconciliation + Puppeteer PDF engine",
+        "Recharts dashboard for trends/revenue; WebSocket realtime notifications",
+        "JWT auth, encrypted storage, audit logging"
+      ],
+      "results": [
+        "Admin 15-20h → 4h/week; reports 6h → 15min; response 48h → 6h",
+        "Payment accuracy 94% → 99.7%; 97% adoption in 30 days; zero incidents"
+      ]
+    }
+  },
+  {
+    "id": "pak-qurtaba",
+    "featured": false,
+    "tag": "Visa Agency MIS",
+    "title": "Pak Qurtaba",
+    "oneLiner": "Visa/travel agency MIS with multi-role dashboards and automated CV generation.",
+    "body": "Full-stack build: React + Appwrite Auth + RBAC for Admin/Applicant/Demand portals, server-side pagination for 5k+ records, group-based filtering, export-ready CVs in <30s.",
+    "role": "Full-Stack Engineer",
+    "stack": ["React", "Appwrite", "RBAC", "Cloud Storage"],
+    "links": { "github": "#", "live": "#" },
+    "cover": "/images/projects/pak-qurtaba/cover.webp",
+    "gallery": [
+      "/images/projects/pak-qurtaba/1.webp",
+      "/images/projects/pak-qurtaba/2.webp",
+      "/images/projects/pak-qurtaba/3.webp",
+      "/images/projects/pak-qurtaba/4.webp",
+      "/images/projects/pak-qurtaba/5.webp"
+    ],
+    "metrics": [
+      { "label": "query", "value": "<800ms" },
+      { "label": "cv_time", "value": "15m_→_30s" }
+    ],
+    "caseStudy": {
+      "situation": "Manual paperwork, disorganized applicant tracking, no realtime visibility across stakeholders.",
+      "task": "Digitize end-to-end workflow for hundreds of applicants with 3 secure portals and scalable data layer.",
+      "action": [
+        "Three RBAC dashboards (Admin/Applicant/Demand) on Appwrite Auth with data isolation",
+        "Applicant profiles + reference linking + demand workflow; server-side pagination for 1k+ filtered rows",
+        "Dynamic key-value group filtering + custom search (<800ms)",
+        "Auto CV generation + bulk export + status/demand analytics"
+      ],
+      "results": [
+        "70% less admin work; 60% fewer status calls; reports in minutes",
+        "5k+ records, <2s dashboard load, centralized decision-ready data"
+      ]
+    }
+  }
+]
