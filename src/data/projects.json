@@ -11,9 +11,6 @@
     "links": { "github": "#", "live": "#" },
     "cover": "/images/projects/zestup/cover.webp",
     "gallery": [
-      "/images/projects/zestup/1.jpg",
-      "/images/projects/zestup/2.jpg",
-      "/images/projects/zestup/3.jpg",
       "/images/projects/zestup/4.webp",
       "/images/projects/zestup/5.webp"
     ],
