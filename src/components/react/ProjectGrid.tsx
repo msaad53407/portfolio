@@ -67,7 +67,7 @@ function ProjectModal({ project, open, onOpenChange }: { project: Project; open:
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="dialog-scroll dialog-wide overflow-y-auto border-edge bg-panel p-0">
+      <DialogContent className="dialog-scroll dialog-wide dialog-grid-fix overflow-y-auto border-edge bg-panel p-0">
         <div className="border-b border-edge px-5 py-3 font-mono text-micro text-fog">
           <span className="text-glow">$</span> cat ./case-study/{project.id}.md
         </div>
@@ -94,18 +94,18 @@ function ProjectModal({ project, open, onOpenChange }: { project: Project; open:
                 </>
               )}
             </div>
-            <div className="mt-2 flex gap-2">
+            <div className="mt-2 flex items-center gap-2 overflow-x-auto pb-1">
               {gallery.map((g, i) => (
                 <button
                   key={i}
                   onClick={() => setIdx(i)}
                   aria-label={`View ${project.title} screenshot ${i + 1}`}
-                  className={`h-12 w-20 overflow-hidden border font-mono text-tiny ${i === idx ? "border-glow" : "border-edge opacity-60 hover:opacity-100"}`}
+                  className={`h-12 w-20 shrink-0 overflow-hidden border font-mono text-tiny ${i === idx ? "border-glow" : "border-edge opacity-60 hover:opacity-100"}`}
                 >
                   <SafeImage src={g} alt={`${project.title} thumbnail ${i + 1}`} className="h-full w-full" />
                 </button>
               ))}
-              <span className="ml-auto self-center font-mono text-micro text-dim">
+              <span className="ml-auto shrink-0 self-center pl-2 font-mono text-micro text-dim">
                 {idx + 1}/{gallery.length}
               </span>
             </div>

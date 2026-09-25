@@ -344,6 +344,12 @@
   .dialog-wide {
     max-width: calc(100% - var(--dialog-margin));
   }
+  /* Base UI popup is display:grid; grid items default min-width:auto,
+     which lets wide content (images, thumb strips) force the dialog
+     wider than the viewport. Contain them. */
+  .dialog-grid-fix > * {
+    min-width: 0;
+  }
   @media (min-width: 640px) {
     .dialog-wide {
       max-width: min(48rem, calc(100% - var(--dialog-margin)));
