@@ -198,7 +198,7 @@ export default function ProjectGrid({ projects, layout }: { projects: Project[];
             }
           >
             {layout === "large" ? (
-              <SafeImage src={p.cover} alt={`${p.title} — ${p.tag}: ${p.oneLiner}`} eager={i === 0} className="block h-auto w-full border-b border-edge md:border-b-0 md:border-r" />
+              <SafeImage src={p.cover} alt={`${p.title} — ${p.tag}: ${p.oneLiner}`} eager={i === 0} className="block h-auto w-full border-b border-edge md:self-center md:border-b-0 md:border-r" />
             ) : (
               <SafeImage src={p.cover} alt={`${p.title} — ${p.tag}: ${p.oneLiner}`} className="cover-ratio block w-full border-b border-edge" />
             )}

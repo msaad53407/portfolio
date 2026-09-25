@@ -9,11 +9,13 @@
     "role": "Lead Backend Developer",
     "stack": ["Node.js", "TypeScript", "Express", "Prisma", "PostgreSQL", "Redis", "Socket.IO", "React", "Flutter", "Docker"],
     "links": { "github": "#", "live": "#" },
-    "cover": "/images/projects/zestup/1.jpg",
+    "cover": "/images/projects/zestup/cover.webp",
     "gallery": [
       "/images/projects/zestup/1.jpg",
       "/images/projects/zestup/2.jpg",
-      "/images/projects/zestup/3.jpg"
+      "/images/projects/zestup/3.jpg",
+      "/images/projects/zestup/4.webp",
+      "/images/projects/zestup/5.webp"
     ],
     "metrics": [
       { "label": "apps served", "value": "5" },
